@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quillo Playground</title>
+<link rel="stylesheet" href="/__pg/style.css">
+</head>
+<body>
+<header class="bar">
+  <div class="brand">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M20 3c-6 1-11 5-13 12l-2 6 2-1c1-3 2-4 4-5 5-1 8-6 9-12z" fill="currentColor"/></svg>
+    <span>Quillo <b>Playground</b></span>
+  </div>
+  <nav class="modes" role="tablist">
+    <button role="tab" data-mode="tour" aria-selected="true">Guided tour</button>
+    <button role="tab" data-mode="play" aria-selected="false">Playground</button>
+  </nav>
+  <div class="actions">
+    <select id="examples" aria-label="Examples" hidden></select>
+    <button id="reset" class="ghost" title="Put back the code this step starts with">Reset code</button>
+    <button id="run" class="primary" title="Ctrl+Enter"><span id="run-label">Run &amp; check</span> <kbd>Ctrl ↵</kbd></button>
+  </div>
+</header>
+
+<main class="layout" id="layout">
+  <aside class="lesson" id="lesson">
+    <div class="progress">
+      <div class="progress-top">
+        <select id="step-select" aria-label="Step"></select>
+        <span id="progress-text"></span>
+      </div>
+      <div class="meter"><div id="meter-fill"></div></div>
+    </div>
+    <div class="lesson-body">
+      <p class="level" id="step-level"></p>
+      <h1 id="step-title"></h1>
+      <div id="step-lesson" class="prose"></div>
+      <section class="task">
+        <h2>Your task</h2>
+        <div id="step-task" class="prose"></div>
+      </section>
+      <details id="hint"><summary>Hint</summary><div id="step-hint" class="prose"></div></details>
+      <details id="answer" hidden><summary>Show an answer</summary>
+        <p class="note">Read it, then type it yourself: that is how it sticks.</p>
+        <pre id="step-answer"></pre>
+      </details>
+      <section class="checks" id="checks-box" hidden>
+        <h2>Checks</h2>
+        <ul id="checks"></ul>
+      </section>
+      <section class="success" id="success" hidden>
+        <p><b>Step passed.</b> <span id="success-text"></span></p>
+        <button id="next" class="primary">Next step →</button>
+      </section>
+    </div>
+  </aside>
+
+  <section class="editor-pane">
+    <div class="pane-head"><span>main.qwe</span><span id="status" class="status"></span></div>
+    <div class="editor" id="editor">
+      <div class="gutter" id="gutter" aria-hidden="true"></div>
+      <div class="code-wrap">
+        <pre class="highlight" id="highlight" aria-hidden="true"></pre>
+        <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Quillo code"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="output-pane">
+    <div class="pane-head tabs" role="tablist">
+      <button role="tab" data-tab="console" aria-selected="true">Console</button>
+      <button role="tab" data-tab="preview" aria-selected="false">Preview</button>
+      <button id="stop" class="ghost small" hidden>Stop server</button>
+    </div>
+    <div class="tab-body" id="tab-console">
+      <div id="console" class="console"><p class="muted">Press <b>Run</b> to see what your program prints and what the checker says.</p></div>
+    </div>
+    <div class="tab-body" id="tab-preview" hidden>
+      <form class="urlbar" id="urlbar">
+        <span class="origin" id="origin"></span>
+        <input id="url" value="/" aria-label="Path">
+        <button class="ghost small">Go</button>
+      </form>
+      <iframe id="frame" title="Preview" src="about:blank"></iframe>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="/__pg/app.js"></script>
+</body>
+</html>
